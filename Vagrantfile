@@ -10,8 +10,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "docker-generic-host"
   config.vm.hostname = "docker-generic-host"
 
-  config.vm.box = 'AntonioMeireles/coreos-stable'
-  config.vm.box_version = ">= 681.0.0"
+  config.vm.box = 'AntonioMeireles/coreos-beta'
+  config.vm.box_version = ">= 766.1.0"
+
+  config.vm.provider :virtualbox do |v, override|
+    override.v.network :private_network, ip: '192.168.88.8'
+    v.gui = false
+    v.customize ['modifyvm', :id, '--memory', 4096]
+    v.customize ['modifyvm', :id, '--cpus', 8]
+  end
 
   config.vm.provider :parallels do |v, override|
     v.customize ['set', :id, '--memsize', 4096]
