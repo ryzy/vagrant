@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_version = ">= 766.1.0"
 
   config.vm.provider :virtualbox do |v, override|
-    override.v.network :private_network, ip: '192.168.88.8'
+    override.vm.network :private_network, ip: '192.168.88.8'
     v.gui = false
     v.customize ['modifyvm', :id, '--memory', 4096]
     v.customize ['modifyvm', :id, '--cpus', 8]
